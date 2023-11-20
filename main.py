@@ -10,8 +10,7 @@ def menu():
     print("0. Sair")
 
 if __name__ == "__main__":
-    arquivo_json = "biblioteca.json"  
-    biblioteca = Biblioteca(arquivo_json)
+    biblioteca = Biblioteca()
 
     while True:
         menu()
@@ -24,9 +23,23 @@ if __name__ == "__main__":
         elif escolha == "1":
             titulo = input("Digite o título do livro: ")
             autor = input("Digite o autor do livro: ")
-            ano = input("Digite o ano de publicação do livro: ")
+
+            while True:
+                try:
+                    ano = int(input("Digite o ano de publicação do livro: "))
+                    break
+                except:
+                    print("Insira um valor válido, precisa ser um número!")
+
             genero = input("Digite o gênero do livro: ")
-            quantidade = int(input("Digite a quantidade disponível do livro: "))
+
+            while True:
+                try:
+                    quantidade = int(input("Digite a quantidade disponível do livro: "))
+                    break
+                except:
+                    print("Insira um valor válido, precisa ser um número!")
+        
             novo_livro = Livro(titulo, autor, ano, genero, quantidade)
             biblioteca.cadastrar_livro(novo_livro)
         elif escolha == "2":
